@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Contact List
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-2 col-8">
+            {% for contact in page_obj %}
+                <div class="border border-1 m-2">
+                    <h2><a href="{% url 'contact:get' contact.id %}">{{ contact.name }}</a></h2>
+                    <ul class="list-group">
+                        {% for phonenumber in contact.phone.all %}
+                            <li class="list-group-item disabled"
+                                aria-disabled="true">{{ phonenumber.type }}: {{ phonenumber.number }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+            <a href="{% url 'contact:create_page' %}" class="btn btn-success m-2">Add Contact</a>
+
+            {% include 'pagination.html' %}
+        </div>
+    </div>
+{% endblock %}

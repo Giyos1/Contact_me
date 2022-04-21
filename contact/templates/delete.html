@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Contact List
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-2 col-8">
+                <div class="alert alert-danger">
+                    Are you sure delete :<strong> {{ contact.name }}</strong>
+                    <form action="{% url 'contact:delete' contact.id %}" method="post">
+{#                    <form action="{{ contact.delete_absolute_url }}" method="post">#}
+                        {% csrf_token %}
+                        <a href="{% url 'contact:list' %}" class="btn btn-success m-2">Back</a>
+                        <button type="submit" class="btn btn-success m-2">Delete</button>
+                    </form>
+                </div>
+
+{#            <a href="{% url 'contact:' %}" class="btn btn-success m-2">Back</a>#}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Create contact page
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-2 col-8">
+            <form action="{% url 'contact:create' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_contact" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="id_contact"
+                           placeholder="Name"name="contact_name">
+                </div>
+
+                <div class="mb-3">
+                    <label for="number" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="number"
+                           placeholder="+998901234567" name="phone_number">
+                </div>
+                <select class="form-select mb-2" aria-label="Default select example" name="type">
+                    {% for type in types %}
+                        {% if forloop.counter == 2 %}
+                            <option value="{{ type.0}}" selected>{{ type.1 }}</option>
+                        {% endif %}
+
+                        <option value="{{ type.0 }}" >{{ type.1 }}</option>
+                    {% endfor %}
+                </select>
+
+                <input type="submit" class="btn btn-primary " value="save" />
+                <a href="{% url 'contact:list' %}" class="btn btn-warning">Back</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

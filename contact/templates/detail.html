@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Contact List
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-2 col-8">
+                <div class="border border-1 m-2">
+                    <h2>{{ contact.name }}</h2>
+                    <ul class="list-group">
+                        {% for phonenumber in contact.phone.all %}
+                            <li class="list-group-item disabled" aria-disabled="true">{{ phonenumber.type }}:  {{ phonenumber.number}}</li>
+                            {% endfor %}
+                    </ul>
+                </div>
+
+            <a href="{% url 'contact:add_number_page' contact.id %}" class="btn btn-warning m-2">Add Number</a>
+            <a href="{% url 'contact:delete_page' contact.id%}" class="btn btn-success m-2">Delete</a>
+            <a href="{% url 'contact:list' %}" class="btn btn-primary m-2">Back</a>
+        </div>
+    </div>
+{% endblock %}
