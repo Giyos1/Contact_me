@@ -20,5 +20,9 @@ from .views import homepage
 urlpatterns = [
     path('', homepage, name='home'),
     path('admin/', admin.site.urls),
-    path('contact/', include('contact.urls'))
+    path('contact/', include('contact.urls')),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]
+
+handler404 = 'mi.views.handler404'
+

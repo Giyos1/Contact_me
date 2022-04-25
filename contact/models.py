@@ -13,7 +13,7 @@ class Audit(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length=200)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=False, default=1)
 
     class Meta:
         db_table = 'contact'
